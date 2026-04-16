@@ -14,6 +14,7 @@ public class Trip {
 	private boolean activo;
 	private Date fecha;
 	private Integer idCategoria;
+	private Integer destacado;
 	
 	
 	public Integer getId() {
@@ -76,9 +77,14 @@ public class Trip {
 	public void setIdCategoria(Integer idCategoria) {
 		this.idCategoria = idCategoria;
 	}
+	public Integer getDestacado() {
+		return destacado;
+	}
+	public void setDestacado(Integer destacado) {
+		this.destacado = destacado;
+	}
 	
 	
-	
-	
-
 }
+	
+	
