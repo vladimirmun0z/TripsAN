@@ -15,6 +15,7 @@ public class Trip {
 	private Date fecha;
 	private Integer idCategoria;
 	private Integer destacado;
+
 	
 	
 	public Integer getId() {
