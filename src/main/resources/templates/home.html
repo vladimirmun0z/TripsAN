@@ -29,7 +29,8 @@
               <a class="nav-link active" th:href="@{/}">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/tabla}">Tabla Trips</a> </li>
+              <a class="nav-link" th:href="@{/tabla}">Tabla Trips</a> 
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Menu 2</a>
             </li>           
@@ -65,46 +66,37 @@
         <h2 class="font-weight-bold text-center text-capitalize">DESTACADOS</h2>
         <hr>
         
-        <div class="row">
+        <div class="row" th:each="trip : ${trips}">
           <div class="col-md-3">            
-            <img class="rounded mx-auto d-block" th:src="@{/images/trip01.png}" alt="Trip 1" width="220" height="220">            
+            <img class="rounded mx-auto d-block" 
+                 th:src="@{/images/{img} (img=${trip.imagen})}" 
+                 alt="Trip Image" width="220" height="220">            
           </div>
           <div class="col-md-9">
-            <h2>Senderismo</h2>
-            <h6 class="card-title"><strong>Categoría: </strong> <span>En la montaña</span></h6>
-            <h6 class="card-title"><strong>Publicado: </strong> <span>2022-01-01 </span></h6>                
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-secondary" th:href="@{/detalle/1}" role="button">Ver detalles &raquo;</a></p>            
+            <h2 th:text="${trip.nomTrip}">Nombre del Trip</h2>
+            
+            <h6 class="card-title">
+              <strong>Categoría: </strong> 
+              <span>Aventura</span>
+            </h6>
+            
+            <h6 class="card-title">
+              <strong>Publicado: </strong> 
+              <span th:text="${#dates.format(trip.fecha, 'dd-MM-yyyy')}">01-01-2022</span>
+            </h6>                
+            
+            <p th:text="${trip.descripcion}">Descripción detallada del viaje...</p>
+            
+            <p>
+              <a class="btn btn-secondary" 
+                 th:href="@{/detalle/{id} (id=${trip.id})}" 
+                 role="button">Ver detalles &raquo;</a>
+            </p>            
           </div>
+          <hr class="col-12">
         </div>  
-
-        <div class="row">
-          <div class="col-md-3">            
-            <img class="rounded mx-auto d-block" th:src="@{/images/trip02.png}" alt="Trip 2" width="220" height="220">            
-          </div>
-          <div class="col-md-9">
-            <h2>Carreras en saco</h2>
-            <h6 class="card-title"><strong>Categoría: </strong> <span>En la Ciudad</span></h6>
-            <h6 class="card-title"><strong>Publicado: </strong> <span>2022-01-05 </span></h6>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-secondary" th:href="@{/detalle/2}" role="button">Ver detalles &raquo;</a></p>
-          </div>
-        </div>  
-
-        <div class="row">
-          <div class="col-md-3">            
-            <img class="rounded mx-auto d-block" th:src="@{/images/trip03.png}" alt="Trip 3" width="220" height="220">            
-          </div>
-          <div class="col-md-9">
-            <h2>Ciclismo</h2>
-            <h6 class="card-title"><strong>Categoría: </strong> <span>En los pueblos</span></h6>
-            <h6 class="card-title"><strong>Publicado: </strong> <span>2022-02-07 </span></h6>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-secondary" th:href="@{/detalle/3}" role="button">Ver detalles &raquo;</a></p>
-          </div>
-        </div>          
-          <hr>    
-      </div> </main>
+      </div> 
+    </main>
 
     <footer class="footer">
       <div class="container">
