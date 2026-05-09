@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Roles</title>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-header bg-dark text-white">
+                <h3 class="mb-0">Listado de Roles del Sistema</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Estado</th>
+                            <th>Fecha Creación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="rol : ${listaRoles}">
+                            <td th:text="${rol.id}"></td>
+                            <td th:text="${rol.nomRol}"></td>
+                            <td th:text="${rol.descripcion}"></td>
+                            <td>
+                                <span th:if="${rol.activo}" class="badge bg-success">Activo</span>
+                                <span th:unless="${rol.activo}" class="badge bg-danger">Inactivo</span>
+                            </td>
+                            <td th:text="${#dates.format(rol.fechaRegistro, 'dd-MM-yyyy')}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
